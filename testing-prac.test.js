@@ -1,4 +1,4 @@
-const { calculator } = require("./testing-prac.js");
+const { sum, mult, capitalize, reverseString, cypher, calculator, arrayAnal } = require("./testing-prac.js");
 //really interestingly something (VS, babel module??) auto 
 //included the above line when I entered in console log for 
 //calculator. just require("./testing-prac.js") was enough 
@@ -9,6 +9,13 @@ const { calculator } = require("./testing-prac.js");
 //other functions even though I am not exporting them and = the 
 //require directly to const {calculator}
 //??? strange quirk for mine...
+//tested changing mult to a function and not a refernece to 
+//an arrow and it needs to be exported??
+//^^^^^^^^^SOLVED!! : it is because I wasn't declaring const 
+//in front of the arrow function declaration. I still don't
+//know why it is accessible if not given a type but I would guess
+//it's absolutely not good practise
+
 
 //require("./testing-prac.js");
 
@@ -35,3 +42,28 @@ test("reverse string", () => {
 test("sum Ob", () => {
   expect(calculator.sum(1, 2)).toBe(3);
 });
+
+test("cypher", () => {
+  expect(cypher("abc",3)).toBe("def");
+})
+
+// test("cypher2", () => {
+//   expect(cypher("def",3)).toBe("ghi");
+// })
+
+// test("cypher3", () => {
+//   expect(cypher("xyz",3)).toBe("abc");
+// })
+
+test("cypher4", () => {
+  expect(cypher("GronkNuTs",3)).toBe("JurqnQxWv");
+})
+
+test("Array Anal", () => {
+  expect(arrayAnal([1, 8, 3, 4, 2, 6])).toMatchObject({
+    average: 4,
+    min: 1,
+    max: 8,
+    length: 6,
+  });
+})
